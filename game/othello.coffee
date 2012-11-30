@@ -19,8 +19,8 @@ module.exports = class Othello
     middle = @size / 2
     @board[middle - 1][middle - 1] = WHITE
     @board[middle][middle] = WHITE
-    @board[middle - 1][middle] = WHITE
-    @board[middle - 1][middle - 1] = WHITE
+    @board[middle - 1][middle] = BLACK
+    @board[middle][middle - 1] = BLACK
 
   printBoard: ->
     (column.join(" ") for column in @board).join "\n"

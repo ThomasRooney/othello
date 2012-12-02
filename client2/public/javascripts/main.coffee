@@ -29,10 +29,11 @@ $ ->
   socket.on 'challenged', (uid, byWho, accepted) ->
     console.log 'challenged', byWho
     accepted yes
-    launch openTab uid, byWho
+    launch openTab(uid, byWho), uid
 
   socket.on 'update', (opponent, model) ->
-    canvas = tabs.find("div[uid='#{opponent}'] .gameBoard")
+    canvas = tabs.find("div[data-uid='#{opponent}'] .gameBoard")
+    console.log "canvas", canvas
     updateBoard canvas, model
 
   #
@@ -50,7 +51,7 @@ $ ->
     tab.append "<h3>Challenging...</h3>"
     socket.emit 'challenging', myId, hash, player, (accepted) ->
       if accepted
-        launch tab
+        launch tab, player
 
   openTab = (uid, playerName) ->
     $("#playerList li[data-uid=#{uid}]").remove()
@@ -69,12 +70,13 @@ $ ->
     return $("##{tabId}")
 
 
-  launch = (tab) ->
+  launch = (tab, uid) ->
     tab.empty()
     tab.append "<h3 class='whitePlayer'>Me</h3>"
     tab.append "<h3 class='blackPlayer'>#{tab.data 'opponent'}</h3>"
     tab.append "<canvas class='gameBoard' width='600' height='400' />"
-    drawBoard tab.find(".gameBoard")
+    console.log "drawcanvas", tab.find(".gameBoard")
+    drawBoard tab.find(".gameBoard"), uid
 
   #
   # Game drawing
@@ -147,24 +149,37 @@ $ ->
       super new Size(45, 45), 20
       @setStyle '#07f', '#06f'
 
-  drawBoard = (canvas) ->
+  prepareBoard = (canvas) ->
     paper.setup canvas.get(0)
+    console.log new Point(canvas.width(), canvas.height()).divide(2)
     board = new Board new Point(canvas.width(), canvas.height()).divide(2), 
                       new Size(50, 50), new Size(8, 8)
     board.setStyle
       fillColor:  '#ddd'
       strokeColor:  '#aaa'
       strokeWidth:  1
+
+    return board
+
+  attachTools = (uid) ->
+    tool = new Tool
+    tool.onMouseOver = (event) ->
+      console.log uid
+
+  drawBoard = (canvas, uid) ->
+    board = prepareBoard canvas
+    attachTools uid
     board.rotateTo 50, 70
     view.draw()
-    return board
 
   PlayerStones = [WhiteStone, BlackStone]
 
   updateBoard = (canvas, model) ->
-    board = drawBoard canvas
+    board = prepareBoard canvas
     for {x, y, player} in model.board
+      console.log player, PlayerStones[player]
       board.newStone PlayerStones[player], x, y
+    board.rotateTo 50, 70
     view.draw()
 
     #view.setOnFrame ->

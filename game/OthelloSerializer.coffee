@@ -1,24 +1,23 @@
 module.exports = class OthelloSerializer
   constructor: (@othello) ->
-    console.log "serialize", @othello
 
   serialize: ->
     currentPlayer: @othello.getNextPlayer()
     board:
-      _serializeBoard()
+      @_serializeBoard()
     validMoves:
-      _serializeValidMoves()
+      @_serializeValidMoves()
     score:
-      _serializeScore()
+      @_serializeScore()
     finished:
       @othello.isFinished()
 
-  _serializeBoard = ->
-    @othello.getBoard().iterate (x, y, player) ->
+  _serializeBoard: ->
+    @othello.getBoard().iterate ([x, y], player) ->
       x: x, y: y, player: player
 
-  _serializeValidMoves = ->
+  _serializeValidMoves: ->
     x: x, y: y for [x, y] in @othello.getValidMoves()
 
-  _serializeScore = ->
+  _serializeScore: ->
     i: score for score, i in @othello.getScore()

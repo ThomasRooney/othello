@@ -1,0 +1,31 @@
+\documentclass[a4wide, 11pt]{article}
+\usepackage{a4, fullpage}
+\setlength{\parskip}{0.2cm}
+\setlength{\parindent}{0cm}
+\usepackage[hmargin=2.3cm,vmargin=2.3cm]{geometry}
+
+
+% This is the preamble section where you can include extra packages etc.
+
+\ifx\pdftexversion\undefined
+\usepackage[dvips]{graphicx}
+\else
+\usepackage[pdftex]{graphicx}
+\DeclareGraphicsRule{*}{mps}{*}{}
+\fi
+
+\begin{document}
+
+\title{Software Engineering Coursework \\ Design and Implementation of Multiplayer Othello}
+
+\author{Michal Srb and Thomas Rooney}
+
+\date{\today}         % inserts today's date
+
+\maketitle            % generates the title from the data above
+
+\section{Introduction}
+
+\includegraphics[width=\textwidth]{SoftwareEngineering.png}
+
+\end{document}

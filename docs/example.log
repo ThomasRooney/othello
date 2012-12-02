@@ -1,0 +1,56 @@
+This is MetaPost, version 1.504 (kpathsea version 6.1.0)  1 DEC 2012 13:51
+**example.mp
+(mpost.mp (c:/texlive/2012/texmf-dist/metapost/base/plain.mp
+Preloading the plain mem file, version 1.004)) (./example.mp
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml.mp
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_infrastructure.mp
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_log.mp))
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_object.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_commons.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_margins.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_picture.mp
+(c:/texlive/2012/texmf-dist/metapost/base/boxes.mp))
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_group.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_picture_stack.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_positioning.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/util_shade.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_base.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_links.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_paths.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_note.mp
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_defaults.mp))
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_stereotype.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_class_clipart.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_class.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_instance.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_class_relations.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_class_assoc.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_package.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_package_relations.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_behavioral_common.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_activity.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_state.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_usecase_clipart.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_usecase.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_behavioral_common.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_activity.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_state.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_usecase_clipart.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_usecase.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_component.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_component_relations.mp)
+(c:/texlive/2012/texmf-dist/metapost/metauml/metauml_templates.mp))
+! Illegal suffix of declared variable will be flushed.
+<to be read again> 
+                   1
+example->...IX2)className:="Class";string(SUFFIX2)
+                                                  name;(SUFFIX2)name=(EXPR3)...
+
+example->...tr(SUFFIX2);defClass(SUFFIX2)((EXPR4))
+                                                  ;log"Copying class info";C...
+
+example->...X2)(iClass)((EXPR3))((TEXT4))((TEXT5))
+                                                  ;endgroup
+l.8     Class.webSoc1("Client 1 WebSocket")()()
+                                               ;
+? 

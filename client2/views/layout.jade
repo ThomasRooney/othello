@@ -2,11 +2,18 @@ doctype 5
 html
   head
     title= title
+    
+       
+    link(rel='stylesheet', href='/stylesheets/jquery-ui-1.9.2.custom.min.css')
+    link(rel='stylesheet', href='/stylesheets/jquery.mobile-1.2.0.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/socket.io/socket.io.js')
     script(src='/javascripts/paper.js')
     script(src='/javascripts/jquery-1.8.1.min.js')
-    script(src='/javascripts/main.coffee', type='text/coffeescript')
+    script(src='/javascripts/jquery-ui-1.9.2.custom.min.js')
+    script(src='/javascripts/jquery.mobile-1.2.0.min.js')
+    script(src='/javascripts/processing-1.4.1.min.js')
     script(src='/javascripts/coffee-script.js')
+    script(src='/javascripts/main.coffee', type='text/coffeescript')
   body
     block content

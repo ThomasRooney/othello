@@ -1,78 +1,78 @@
-Board = require './Board'
-
 module.exports = class Othello
-  constructor: (@board, @players) ->
+  OUTSIDE = -1
+  EMPTY = 0
+  WHITE = 1
+  BLACK = 2
 
-  getNextPlayer: ->
-    @players.player()
+  DIRECTIONS = [
+    [1, 0]
+    [1, 1]
+    [0, 1]
+    [-1, 1]
+    [-1, 0]
+    [-1, -1]
+    [0, -1]
+  ]
 
-  isNextPlayer: (player) ->
-    @players.player() is player
+  constructor: (@size) ->
+    if @size % 2 != 0 or @size < 2
+      throw "Invalid size, size must be even and at least 2"
+    @createBoard()
 
-  isFinished: ->
-    someoneCanPlay = false
-    @players.iterate (player) =>
-      someoneCanPlay = someoneCanPlay or @canPlay(player)
-    return not someoneCanPlay
+  createBoard: ->
+    @board = new Array @size
+    for _, x in @board
+      @board[x] = column = new Array @size
+      for _, y in column
+        column[y] = EMPTY
 
-  canPlay: (player) ->
-    @getValidMoves(player).length > 0
+  initialState: ->
+    middle = @size / 2
+    @board[middle - 1][middle - 1] = WHITE
+    @board[middle][middle]         = WHITE
+    @board[middle - 1][middle]     = BLACK
+    @board[middle][middle - 1]     = BLACK
+    @nextPlayer = BLACK
 
-  getBoard: ->
-    @board
+  setState: (@nextPlayer, @board) ->
 
-  getScore: ->
-    scores = new Array @players.getCount()
-    for _, player in scores
-      scores[player] = 0
-    @board.iterate ([x, y], player) ->
-      scores[player]++
-    return scores
+  makeMove: (player, [x, y]) ->
+    unless @isEmpty x, y
+      return false
+    unless @isNextPlayer player
+      return false
+    changes = []
+    point = [x,y]
+    for direction in DIRECTIONS
+      changes.concat (@makeMoveInDirection direction, player, point, [])
+    console.log (changes)
 
-  skipMove: ->
-    @players.nextPlayer()
 
-  makeMove: (x, y, valid, invalid) ->
-    if (toFlip = @_stonesToFlip [x, y]).length > 0
-      @_flip toFlip
-      @players.nextPlayer()
-      valid?()
-    else
-      invalid?()
-
-  getValidMoves: (player)->
-    @board.iterateAll (pos) ->
-      pos
-    , (pos) =>
-      @_stonesToFlip(pos, player).length > 0
-
-  _stonesToFlip: (pos, player = @players.player()) ->
-    unless @board.isIn(pos) and @board.isEmpty(pos)
-      return []
-    toBeFlipped = for direction in Othello._directions
-      @_moveInDirection direction, player, pos, [pos]
-    [].concat toBeFlipped...
-
-  _moveInDirection: (direction, player, pos, toFlip) ->
-    newPos = @_add pos, direction
-    if not @board.isIn(newPos) or @board.isEmpty(newPos)
+  makeMoveInDirection: (direction, player, pos, moves) ->
+    newPos = @add pos direction
+    cell = @boardAt newPos
+    if cell is EMPTY or cell is OUTSIDE
       []
-    else if @board.get(newPos) isnt player
-      @_moveInDirection direction, player, newPos, toFlip.concat [newPos]
-    else if toFlip.length > 1
-      toFlip
+    else if cell isnt player
+      @makeMoveInDirection direction, player, newPos, moves.concat newPos
     else
-      []
+      moves
 
-  _add: ([x, y], [dx, dy]) ->
+
+
+  add: ([x, y], [dx, dy]) ->
     [x + dx, y + dy]
 
-  _flip: (toFlip, player = @players.player()) ->
-    for pos in toFlip
-      @board.set pos, player
-    true
+  boardAt: ([x, y]) ->
+    return OUTSIDE unless (x in [0..@size] and y in [0..@size])
+    @board[x][y]
 
-  @_directions = [
-    [ 1, 0], [ 1,  1], [0,  1], [-1,  1]
-    [-1, 0], [-1, -1], [0, -1], [ 1, -1]
-  ]
+  isEmpty: (x, y) ->
+    @board[x][y] == EMPTY
+
+  isNextPlayer: (player) ->
+    @nextPlayer == player
+
+  printBoard: ->
+    (column.join(" ") for column in @board).join "\n"
+

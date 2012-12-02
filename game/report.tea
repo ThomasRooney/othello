@@ -1,0 +1,62 @@
+class Othello - Responsibilities for Othello:
+  keep track of which player's turn it is'
+    nextPlayer
+    - advancePlayers
+  keep track of state of the board
+    board
+  decide on validity of moves
+    getValidMoves
+    isValidMove
+  keep track of state of the game
+    getScore
+    isFinished
+  change state of the game
+    constructor
+    setInitialPlayer
+    setBoard
+    makeMove
+
+    serialize
+
+TraditionalOthello
+  subclass of Othello with 2 players, set initial state
+
+Decorators on Othello
+  HistoryOthello
+    keep history of the game
+      getPastMove
+
+Development Principles
+  Design into Application
+    - first write calling code
+      . choose simple application, like CLI UI with minimum number of features
+    - then write mock implementation
+      . just enough of the functionality to test the application code
+    - then use TDD
+    - end up with finished feature
+  Least common minimum (check if its in notes)
+    - only include features that are inherently necessary, otherwise use
+      inheritance and decorators as appropriate
+
+Architectual Styles: Ports and Adapters
+Othello is the Domain Model
+adapter to store the game
+adapter to for clients
+
+Webapps: Same Data - Many Clients
+Webapps: MVC
+
+Iterator for iterating through the board
+
+Board is a thin wrapper around data, serves as a databank
+
+Specify data interface between components
+  - players are represented by integers from 0
+  - board and moves are represented as lists of JSON stones:
+    {
+      "x": 1
+      "y": 2
+      "player": 0
+    }
+    . enables us to send incremental changes and lower bandwidth
+

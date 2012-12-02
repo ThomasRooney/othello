@@ -585,6 +585,14 @@ var Point = this.Point = Base.extend({
 		return matrix ? matrix._transformPoint(this) : this;
 	},
 
+	scale: function(hor, ver , center) {
+		if (arguments.length < 2 || typeof ver === 'object') {
+			center = ver;
+			ver = hor;
+		}
+		return this.transform(new Matrix().scale(hor, ver, center));
+	},
+
 	getDistance: function(point, squared) {
 		point = Point.read(arguments);
 		var x = point.x - this.x,

@@ -5,22 +5,22 @@ block content
     #header
       h1= title
     #sidebar
-      input#input(type='text', name='name')
-      button#send Join
-      h3 Players online
-      ul#playerList.ui-helper-reset
-          li(class="ui-state-default", data-uid='mfman')
-            ='The Muffin Man'
-          li(class="ui-state-default" )
-            ='The Ginger Bread Man'
-    #content
+      #form
+        input#input(type='text', name='name')
+        button#send Join
+      #players(style='display: none')
+        h3 Players online
+        ul#playerList
+          //li(class="ui-state-default", data-uid='mfman')
+          //  ='The Muffin Man'
+          //li(class="ui-state-default" )
+          //  ='The Ginger Bread Man'
+    #content(style='display: none')
       #dropTo
         #description
           h3 Challenge a player by dropping him here
         #tabs
           ul#tabsmenu
-            li
-              a(href='#tabs-1') SomePlayer
-          #tabs-1
-            canvas#gameBoard(width='600', height='600')
     #footer
+    #challengePrompt
+      p I am challenging you in a game of #{title}

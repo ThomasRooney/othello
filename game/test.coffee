@@ -71,6 +71,12 @@ addTest "black starts", ->
   game.initialState()
   game.isNextPlayer 2
 
+addTest "initial moves", ->
+  game = new Othello 8
+  game.initialState()
+  point = [5,5]
+  game.makeMove 2, point
+
 allPassed = true
 for [name, test] in tests
   if !test()

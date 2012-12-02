@@ -3,11 +3,12 @@
 # Module dependencies.
 #
 
-express = require('express')
-store   = require('./routes/store')
-user    = require('./routes/user')
-http    = require('http')
-path    = require('path')
+
+express    = require('express')
+store      = require('./routes/store')
+user       = require('./routes/user')
+http       = require('http')
+path       = require('path')
 
 app = express()
 
@@ -32,7 +33,7 @@ app.get('/users', user.list)
 server = http.createServer(app).listen app.get('port'), ->
   console.log("Express server listening on port " + app.get('port'))
 
-io = require('socket.io').listen(server)
+io             = require('socket.io').listen(server)
 
 io.sockets.on 'connection', (socket) ->
   socket.emit 'news', hello: 'world'

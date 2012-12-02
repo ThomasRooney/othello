@@ -41,18 +41,23 @@ module.exports = class Othello
       return false
     unless @isNextPlayer player
       return false
+    changes = []
+    point = [x,y]
     for direction in DIRECTIONS
-      makeMoveInDirection direction, player, x, y, []
+      changes.concat (@makeMoveInDirection direction, player, point, [])
+    console.log (changes)
+
 
   makeMoveInDirection: (direction, player, pos, moves) ->
     newPos = @add pos direction
-    cell = boardAt newPos
+    cell = @boardAt newPos
     if cell is EMPTY or cell is OUTSIDE
       []
     else if cell isnt player
-      makeMoveInDirection direction, player, newPos, moves.concat newPos
+      @makeMoveInDirection direction, player, newPos, moves.concat newPos
     else
       moves
+
 
 
   add: ([x, y], [dx, dy]) ->

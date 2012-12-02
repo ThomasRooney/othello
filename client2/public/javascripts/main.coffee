@@ -1,37 +1,90 @@
 $ ->
+  myId = null
+  hash = null
+
   socket = io.connect 'http://localhost:3000'
-  socket.on 'news', (data) ->
-    console.log data
-    socket.emit 'my other event', my: 'data'
+
+  socket.on 'onlinePlayers', (data) ->
+    $("#playerList").empty()
+    console.log myId
+    for player, name of data when player isnt myId
+      $("#playerList").append """<li class='ui-state-default' data-uid='#{player}'>
+                                    #{name}
+                                  </li>"""
+      $("#playerList").sortable 'refresh'
 
   $('#send').click ->
-    console.log $('#input').val()
-    socket.emit 'message event', "Michal", $('#input').val()
+    socket.emit 'playerJoined', $('#input').val(), (success, data) ->
+      if success
+        console.log "Logged in", data
+        myId = data.uid
+        hash = data.hash
+        $('#form').hide()
+        $('#players').show()
+        $('#content').show()
 
-  paper.install(window)
+  socket.on 'challenged', (byWho, accepted) ->
+    console.log 'challenged', byWho
+    prompt = $("#challengePrompt")
+    prompt.dialog "option", "title", byWho
+    prompt.dialog "option", "buttons", "Accept": ->
+        accepted yes
+        prompt.dialog("close")
+      "Decline": ->
+        accepted no
+        prompt.dialog("close")
+    prompt.dialog("open")
 
 
-  $("#playerList").sortable() 
-  $('#playerList').sortable()
-  tabCounter = 2
+  $("#playerList").sortable()
+
+  console.log $("#challengePrompt")
+  $("#challengePrompt").dialog
+    autoOpen: false
+    modal: true
+    buttons: {
+        "Ok": function() {
+            var text1 = $("#txt1");
+            var text2 = $("#txt2");
+            //Do your code here
+            text1.val(text2.val().substr(1,9));
+            $(this).dialog("close");
+        },
+        "Cancel": function() {
+            $(this).dialog("close");
+        }
+    }
+  #$("#challengePrompt").dialog("open")
+
+  tabCounter = 1
   tabs = $('#tabs')
   tabs.tabs()
   $("#dropTo").droppable drop: (event, ui) ->
     ui.draggable.remove()
     uid = ui.draggable.data('uid')
+    playerName = ui.draggable.text()
 
-    label = uid
     id = "tabs-" + tabCounter
     li = """<li>
-              <a href='##{id}'>#{label}</a>
+              <a href='##{id}'>#{playerName}</a>
             </li>"""
 
     tabs.find(".ui-tabs-nav").append li
-    canvasTemplate = """<canvas class='gameBoard' width='600' height='600' />"""
-    tabs.append "<div id='#{id}'>#{canvasTemplate}</div>"
+    tabs.append "<div id='#{id}'></div>"
     tabs.tabs 'refresh'
+    tabs.tabs 'option', 'active', -1
     tabCounter++
-    drawBoard $("##{id} .gameBoard")
+
+    challenge $("##{id}"), uid
+    #drawBoard $("##{id} .gameBoard")
+
+  challenge = (tab, player) ->
+    tab.html "<h3>Challenging...</h3>"
+    socket.emit 'challenging', myId, hash, player, (accepted) ->
+      if accepted
+        tab.html """<canvas class='gameBoard' width='600' height='600' />"""
+
+  paper.install(window)
 
   class Board
     constructor: (@center, @tileSize, dimensions) ->
@@ -112,7 +165,6 @@ $ ->
     board.newStone WhiteStone, 4, 4
     board.newStone BlackStone, 4, 3
     board.rotateTo 50, 70
-    board.rotateTo 20, 20
     view.draw()
 
     #view.setOnFrame ->

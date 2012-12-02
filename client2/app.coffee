@@ -9,6 +9,7 @@ store      = require('./routes/store')
 user       = require('./routes/user')
 http       = require('http')
 path       = require('path')
+util       = require('./apputil')
 
 app = express()
 
@@ -33,12 +34,38 @@ app.get('/users', user.list)
 server = http.createServer(app).listen app.get('port'), ->
   console.log("Express server listening on port " + app.get('port'))
 
-io             = require('socket.io').listen(server)
+
+io = require('socket.io').listen(server)
+players = 
+  'tom1': 'Tom Hardy'
+  'm6': 'Michal Srb'
+
+hashes = {}
+sockets = {}
 
 io.sockets.on 'connection', (socket) ->
-  socket.emit 'news', hello: 'world'
-  socket.on 'my other event', (data) ->
-    console.log data
 
-  socket.on 'message event', (from, msg) ->
-    console.log "I received a private message by #{from} saying #{msg}"
+  socket.emit 'onlinePlayers', players
+
+  socket.on 'playerJoined', (name, successIs) ->
+    [uid, hash] = util.createUID players, name
+    if !uid?
+      successIs false, "User name too short"
+    else
+      players[uid] = name
+      hashes[uid] = hash
+      successIs true, uid: uid, hash: hash
+      socket.broadcast.emit 'onlinePlayers', players
+      sockets[uid] = socket
+
+  socket.on 'challenging', (from, hash, against, successIs) ->
+    if hashes[from] isnt hash
+      successIs false, "Authentication failed"
+    else if !sockets[against]?
+      successIs false, "Openent isnt online"
+    else
+      sockets[against].emit 'challenged', players[from], (accepted) ->
+        if accepted
+          successIs true
+        else
+          successIs false, "Challenge rejected"

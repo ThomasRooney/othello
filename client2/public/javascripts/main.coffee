@@ -28,8 +28,7 @@ $ ->
     $('#playerList').append($l)
     $("#draggable").draggable revert: true
 
-    $("#playerList").sortable('refresh');
-
+  $("#playerList").sortable() 
   $('#playerList').sortable()
   $("#droppable").droppable drop: (event, ui) ->
     $(this).addClass("ui-state-highlight").find("p").html "Dropped!"
@@ -47,26 +46,52 @@ sketchProc = (processing) ->
   boardSize = 8
   o = new Othello boardSize
   o.initialState()
+  centerX = processing. width / 2
+  centerY = processing.height / 2
+  circleSize = processing.height / (boardSize * 2)
+  preview = false
+  gridX = []
+  gridY = []
+  processing.mousePressed = ->
+    preview = true
+  processing.mouseReleased = ->
+    preview = false
+   # o.makeMove (o.nextPlayer, [gridXPosAt(processing.mouseX), gridYPosAt(processing.mouseY)])
+
   processing.draw = ->
     # determine center and max clock arm length
+    gridXPosAt = (x) ->
+      i=0
+      for xPos in gridX
+        return i if x-circleSize < xPos
+        i+=1
+      return -1
+    gridYPosAt = (y) ->
+      i=0      
+      for yPos in gridY
+        return i if y-circleSize < yPos
+        i+=1
+      return -1  
+    drawBoardAt = (x, y, color, size) ->
+      drawCircle x, y, color, size
+      processing.noFill()
+      xPos = x-(size+1)
+      yPos = y-(size+1)
+      gridX = gridX.concat x
+      gridY = gridY.concat y
+      processing.rect(xPos, yPos,size*2,size*2)  
     drawCircle = (x, y, color, size) ->
       processing.fill(0, 0, 0) if color == 1
       processing.fill(255, 255, 255) if color == 2
       processing.ellipse(x, y, size, size) unless color == 0 or color == -1
-      processing.noFill()
-      processing.rect(x-(size+1),y-(size+1),size*2,size*2)
-
-    centerX = processing. width / 2
-    centerY = processing.height / 2
-    maxArmLength = Math.min(centerX, centerY)
-    circleSize = processing.height / (boardSize * 2)
     # erase background
     processing.background 224
-    now = new Date()
+    # draw current board
     for _, x in o.board
       for _, y in o.board[x]
-        drawCircle circleSize + processing.width*x/boardSize, processing.height*y/boardSize + circleSize, o.board[x][y], circleSize
-
+        drawBoardAt circleSize + processing.width*x/boardSize, processing.height*y/boardSize + circleSize, o.board[x][y], circleSize
+    # draw preview
+    drawCircle  gridX[gridXPosAt(processing.mouseX)], gridY[gridYPosAt(processing.mouseY)], 1, circleSize if preview #and o.isEmpty(gridX[gridXPosAt(processing.mouseX)], gridY[gridYPosAt(processing.mouseY)])
 
 # p.exit(); to detach it
 

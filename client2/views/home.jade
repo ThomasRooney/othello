@@ -4,18 +4,18 @@ block content
   div#page(role="page")
     div#header(role="header")
       h1= title
-    div#content(class="content")
-      div#leftPage(class="content-primary")
+    div#sidebar
+      div(class="sidebar-menu")
         ul#playerList(style="list-style-type: none;")
           li(class="ui-state-default" )
             ='The Muffin Man'
           li(class="ui-state-default" )
             ='The Ginger Bread Man'
-      div#rightPage(class="content-secondary")
-        div#droppable(class="ui-widget-header", style="height:auto")
-          p= 'Drop here to start game'
+    div#content
+      div#droppable(class="ui-widget-header", style="height:auto")
+        p= 'Drop here to start game'
 
-        input#input(type='text')
-        button#send Send
+      input#input(type='text')
+      button#send Send
 
     div#footer(role="footer")

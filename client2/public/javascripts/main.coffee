@@ -13,6 +13,14 @@ $ ->
   canvas = $('#gameBoard')
   size = new Size canvas.width(), canvas.height()
 
+  $("#playerList").sortable() 
+  $('#playerList').sortable()
+  $("#droppable").droppable drop: (event, ui) ->
+    $(this).addClass("running").find("p").html "Dropped!"
+    drawBoard()
+    canvas = document.getElementById("OthelloCanvas")
+    p = new Processing(canvas, sketchProc)
+
   class Board
     constructor: (@center, @tileSize, dimensions) ->
       @offset = tileSize.multiply(dimensions).divide 2
@@ -80,18 +88,20 @@ $ ->
       super new Size(45, 45), 20
       @setStyle '#07f', '#06f'
 
+  drawBoard = ->
 
-  paper.setup canvas.get(0)
-  board = new Board new Point(300, 300), new Size(50, 50), new Size(8, 8)
-  board.setStyle
-    fillColor:  '#ddd'
-    strokeColor:  '#aaa'
-    strokeWidth:  1
-  board.newStone WhiteStone, 3, 3
-  board.newStone BlackStone, 3, 4
-  board.newStone WhiteStone, 4, 4
-  board.newStone BlackStone, 4, 3
-  board.rotateTo 50, 70
-  view.draw()
+    paper.setup canvas.get(0)
+    board = new Board new Point(300, 300), new Size(50, 50), new Size(8, 8)
+    board.setStyle
+      fillColor:  '#ddd'
+      strokeColor:  '#aaa'
+      strokeWidth:  1
+    board.newStone WhiteStone, 3, 3
+    board.newStone BlackStone, 3, 4
+    board.newStone WhiteStone, 4, 4
+    board.newStone BlackStone, 4, 3
+    board.rotateTo 50, 70
+    board.rotateTo 20, 20
+    view.draw()
 
-  #view.setOnFrame ->
+    #view.setOnFrame ->

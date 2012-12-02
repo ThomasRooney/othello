@@ -39,12 +39,6 @@ module.exports = class Board
   set: ([x, y], player) ->
     @board[y][x] = player
 
-#  serialize: ->
-#    JSON.stringify iterate Board.createStone
-#
-#  @createStone = (x, y, player) ->
-#    x: x, y: y, player: player
-
   @_empty = -1
 
   _printBoard: ->

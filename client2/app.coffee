@@ -62,10 +62,24 @@ io.sockets.on 'connection', (socket) ->
     if hashes[from] isnt hash
       successIs false, "Authentication failed"
     else if !sockets[against]?
-      successIs false, "Openent isnt online"
+      successIs false, "Opponent isn't online"
     else
-      sockets[against].emit 'challenged', players[from], (accepted) ->
+      sockets[against].emit 'challenged', from, players[from], (accepted) ->
         if accepted
           successIs true
+          launchGame from, against
         else
           successIs false, "Challenge rejected"
+
+TraditionalOthello = require '../game/TraditionalOthello'
+OthelloSerializer  = require '../game/OthelloSerializer'
+
+launchGame = (white, black) ->
+  whiteSocket = sockets[white]
+  blackSocket = sockets[black]
+
+  game = new TraditionalOthello
+  gameModel = new OthelloSerializer game
+
+  for [socket, opponent] in [[whiteSocket, black], [blackSocket, white]]
+    socket.emit 'update', opponent, gameModel.serialize()

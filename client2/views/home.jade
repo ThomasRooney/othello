@@ -7,13 +7,20 @@ block content
     #sidebar
       input#input(type='text', name='name')
       button#send Join
-      ul#playerList
-          li(class="ui-state-default" )
+      h3 Players online
+      ul#playerList.ui-helper-reset
+          li(class="ui-state-default", data-uid='mfman')
             ='The Muffin Man'
           li(class="ui-state-default" )
             ='The Ginger Bread Man'
     #content
-      #droppable(class="ui-widget-header", style="height:auto")
-        p= 'Drop here to start game'
-        canvas#gameBoard(width='600', height='600')
+      #dropTo
+        #description
+          h3 Challenge a player by dropping him here
+        #tabs
+          ul#tabsmenu
+            li
+              a(href='#tabs-1') SomePlayer
+          #tabs-1
+            canvas#gameBoard(width='600', height='600')
     #footer

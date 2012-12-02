@@ -10,16 +10,28 @@ $ ->
 
   paper.install(window)
 
-  canvas = $('#gameBoard')
-  size = new Size canvas.width(), canvas.height()
 
   $("#playerList").sortable() 
   $('#playerList').sortable()
-  $("#droppable").droppable drop: (event, ui) ->
-    $(this).addClass("running").find("p").html "Dropped!"
-    drawBoard()
-    canvas = document.getElementById("OthelloCanvas")
-    p = new Processing(canvas, sketchProc)
+  tabCounter = 2
+  tabs = $('#tabs')
+  tabs.tabs()
+  $("#dropTo").droppable drop: (event, ui) ->
+    ui.draggable.remove()
+    uid = ui.draggable.data('uid')
+
+    label = uid
+    id = "tabs-" + tabCounter
+    li = """<li>
+              <a href='##{id}'>#{label}</a>
+            </li>"""
+
+    tabs.find(".ui-tabs-nav").append li
+    canvasTemplate = """<canvas class='gameBoard' width='600' height='600' />"""
+    tabs.append "<div id='#{id}'>#{canvasTemplate}</div>"
+    tabs.tabs 'refresh'
+    tabCounter++
+    drawBoard $("##{id} .gameBoard")
 
   class Board
     constructor: (@center, @tileSize, dimensions) ->
@@ -88,8 +100,7 @@ $ ->
       super new Size(45, 45), 20
       @setStyle '#07f', '#06f'
 
-  drawBoard = ->
-
+  drawBoard = (canvas) ->
     paper.setup canvas.get(0)
     board = new Board new Point(300, 300), new Size(50, 50), new Size(8, 8)
     board.setStyle

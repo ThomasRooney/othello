@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  1 DEC 2012 15:46
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  2 DEC 2012 17:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -128,14 +128,14 @@ LaTeX Font Info:    ... okay on input line 17.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(65.44142pt, 483.41216pt, 65.44142pt)
-* v-part:(T,H,B)=(65.44142pt, 664.08714pt, 65.44142pt)
+* v-part:(T,H,B)=(56.9055pt, 681.15898pt, 56.9055pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
 * \textwidth=483.41216pt
-* \textheight=664.08714pt
+* \textheight=681.15898pt
 * \oddsidemargin=-6.82857pt
 * \evensidemargin=-6.82857pt
-* \topmargin=-6.82857pt
+* \topmargin=-15.36449pt
 * \headheight=0.0pt
 * \headsep=0.0pt
 * \topskip=11.0pt
@@ -217,33 +217,34 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 25.
 
-<SoftwareEngineering.png, id=1, 2559.5625pt x 3312.375pt>
+<SoftwareEngineering.png, id=1, 1903.11pt x 825.0825pt>
 File: SoftwareEngineering.png Graphic file (type png)
 
 <use SoftwareEngineering.png>
-Package pdftex.def Info: SoftwareEngineering.png used on input line 29.
-(pdftex.def)             Requested size: 483.41216pt x 625.56711pt.
+Package pdftex.def Info: SoftwareEngineering.png used on input line 43.
+(pdftex.def)             Requested size: 483.41216pt x 209.5812pt.
  [1
 
-{c:/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2 <./SoftwareE
-ngineering.png (PNG copy)>] (./documention.aux) ) 
+{c:/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./SoftwareEngin
+eering.png>] [2] [3] [4] [5] [6]
+(./documention.aux) ) 
 Here is how much of TeX's memory you used:
- 2002 strings out of 493488
- 28784 string characters out of 3144748
- 87761 words of memory out of 3000000
- 5301 multiletter control sequences out of 15000+200000
- 7580 words of font info for 27 fonts, out of 3000000 for 9000
+ 2005 strings out of 493488
+ 28824 string characters out of 3144748
+ 89762 words of memory out of 3000000
+ 5303 multiletter control sequences out of 15000+200000
+ 7748 words of font info for 28 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,6n,31p,256b,187s stack positions out of 5000i,500n,10000p,200000b,50000s
-<c:/texlive/2012/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2012/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr10.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr12.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr17.pfb>
-Output written on documention.pdf (2 pages, 110313 bytes).
+ 37i,6n,31p,344b,187s stack positions out of 5000i,500n,10000p,200000b,50000s
+<c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmbx12.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
+b><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texl
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2012/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on documention.pdf (6 pages, 152109 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
- 18 compressed objects within 1 object stream
+ 46 PDF objects out of 1000 (max. 8388607)
+ 30 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

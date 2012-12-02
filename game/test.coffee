@@ -57,24 +57,43 @@ addTest "Testing default board size 8", ->
 
 addTest "isEmpty", ->
   game = new Othello 8
-  game.isEmpty 0, 0 and
-  game.isEmpty 7, 7 and
-  game.isEmpty 3, 3
+  game.isEmpty([0, 0]) and
+  game.isEmpty([7, 7]) and
+  game.isEmpty([3, 3])
 
 addTest "not isEmpty on default board", ->
   game = new Othello 8
   game.initialState()
-  not game.isEmpty 3, 3
+  not game.isEmpty [3, 3]
 
 addTest "black starts", ->
   game = new Othello 8
   game.initialState()
   game.isNextPlayer 2
 
+addTest "boardAt outside", ->
+  game = new Othello 4
+  game.initialState()
+  -1 == game.boardAt [4, 1]
+
+addTest "makeMoveInDirection", ->
+  game = new Othello 4
+  game.initialState()
+  [[x, y]] = game.makeMoveInDirection [-1, 0], 1, [3,1], []
+  x is 2 and y is 1
+
+addTest "makeMove", ->
+  game = new Othello 4
+  game.initialState()
+  game.nextPlayer = 1
+  game.makeMove 1, [3,1]
+
 allPassed = true
 for [name, test] in tests
   if !test()
     console.log name + " failed"
     allPassed = false
+  else
+    console.log name + " passed"
 if allPassed
   console.log "All tests passed"

@@ -1,7 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  input#input(type='text')
-  button#send Send
+  div(style='float: left')
+    h1= title
+    p Welcome to #{title}
+    p
+      input#input(type='text')
+      button#send Send
+  canvas#gameBoard(width='600', height='600')

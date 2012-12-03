@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  3 DEC 2012 06:48
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  3 DEC 2012 07:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -328,30 +328,31 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 28.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 28.
-
-<SoftwareEngineering.png, id=28, 1626.075pt x 794.97pt>
-File: SoftwareEngineering.png Graphic file (type png)
-
-<use SoftwareEngineering.png>
-Package pdftex.def Info: SoftwareEngineering.png used on input line 45.
-(pdftex.def)             Requested size: 489.10307pt x 239.11148pt.
  [1
 
 {c:/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 62.
- (c:/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 58.
+
+(c:/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
- [2 <./SoftwareEngineering.png>]
-<OthelloGameClassDiagram.png, id=50, 1571.8725pt x 1023.825pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 58.
+
+<OthelloGameClassDiagram.png, id=42, 1571.8725pt x 1023.825pt>
 File: OthelloGameClassDiagram.png Graphic file (type png)
 
 <use OthelloGameClassDiagram.png>
-Package pdftex.def Info: OthelloGameClassDiagram.png used on input line 75.
+Package pdftex.def Info: OthelloGameClassDiagram.png used on input line 73.
 (pdftex.def)             Requested size: 489.10307pt x 318.56976pt.
- [3 <./OthelloGameClassDiagram.png>] [4]
+ [2] [3 <./OthelloGameClassDiagram.png>]
+<SoftwareEngineering.png, id=54, 1626.075pt x 794.97pt>
+File: SoftwareEngineering.png Graphic file (type png)
+
+<use SoftwareEngineering.png>
+Package pdftex.def Info: SoftwareEngineering.png used on input line 108.
+(pdftex.def)             Requested size: 489.10307pt x 239.11148pt.
+ [4 <./SoftwareEngineering.png>]
 <ConnectionFlowchart.png, id=60, 1716.4125pt x 1186.4325pt>
 File: ConnectionFlowchart.png Graphic file (type png)
 
@@ -362,33 +363,40 @@ Package pdftex.def Info: ConnectionFlowchart.png used on input line 124.
 <Screenshot.png, id=66, 1026.83624pt x 578.16pt>
 File: Screenshot.png Graphic file (type png)
  <use Screenshot.png>
-Package pdftex.def Info: Screenshot.png used on input line 142.
+Package pdftex.def Info: Screenshot.png used on input line 144.
 (pdftex.def)             Requested size: 489.10307pt x 275.38754pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 143.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 145.
  [6 <./Screenshot.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 143.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 145.
  (./documention.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 143.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 143.
-Package rerunfilecheck Info: File `documention.out' has not changed.
-(rerunfilecheck)             Checksum: E6813D4C82FB90DB015A295C665F50EC;286.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 143.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 145.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 145.
+
+
+Package rerunfilecheck Warning: File `documention.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `documention.out':
+(rerunfilecheck)             Before: AD1685D97997D01247B749C231B21525;297
+(rerunfilecheck)             After:  BDE8660B102F3CF582C9FFF4D57E58BD;304.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 145.
  ) 
 Here is how much of TeX's memory you used:
- 5797 strings out of 493488
- 86012 string characters out of 3144748
- 172694 words of memory out of 3000000
- 9043 multiletter control sequences out of 15000+200000
+ 5796 strings out of 493488
+ 85996 string characters out of 3144748
+ 171694 words of memory out of 3000000
+ 9042 multiletter control sequences out of 15000+200000
  8005 words of font info for 29 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 30i,6n,35p,502b,375s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,6n,35p,749b,435s stack positions out of 5000i,500n,10000p,200000b,50000s
 <c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/tex
 live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2012/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2012/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2012/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on documention.pdf (6 pages, 484778 bytes).
+Output written on documention.pdf (6 pages, 485895 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  75 compressed objects within 1 object stream

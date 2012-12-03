@@ -40,8 +40,6 @@ We have followed three main principles during the design and implementation of t
 \item End up with lightweight and functional implementation
 \end{enumerate}
 
-\includegraphics[width=\textwidth]{SoftwareEngineering.png}
-
 \section{Testing}
 In accordance with Test Driven Development principles, one of the first stages around building the project was to produce a comprehensive test framework, which could be used throughout the project to ensure that the behaviour of the system, and its components, are correct. To do this, we have utilised the Jasmine Javascript testing framework, so that we could quickly write tests and maintain behaviour whenever we changed bits of implementation. We have created a spec for each of the core classes and used several tests for each method. We have also used Jasmine's feature of nested \texttt{beforeEach} setup calls.
 
@@ -60,25 +58,27 @@ The Othello game logic is relatively simple, but we worked in a top-down style t
 \item Notifying the player who's turn to play it is, or notifications that there are no valid moves and that a player is being skipped.
 \item Playing a move, given a move is valid
 \item Outputting the score of the game.
-\item Telling the players that the game has finished.
+\item Telling the players that the game has finished when it there no valid moves left.
 \end{itemize}
-Whilst building these methods, we produced a list of requirements for the Othello Game class, which were:
+Whilst building these methods, we produced a list of responsibilites that the main Othello class should have held:
 \begin{itemize}
-\item Constructor, to initialising the game to a default state given a board size.
-\item A method returning a boolean if the game has finished or not.
-\item An iterator, to recurse over each row and column of the board, returning the value of what is there such that it can be displayed.
+\item Keep track of which player's turn it is.
+\item Keep track of the stones on the game board.
+\item Decide on validity of moves.
+\item Keep track of game progress (score and finishing conditions).
+\item Change state of the game - enabling players to make moves.
 \end{itemize}
 Using this same principle, we recursively abstracted into the game logic, eventually producing a design that equates to the following diagram:
 
 \includegraphics[width=\textwidth]{OthelloGameClassDiagram.png}
 
-Utilising this design has given us a multitude of advantages. The seperation of the board class allows us to store and transmit the updates to the game to clients in a succint format. The \texttt{adaptor} pattern also allows us to reproduce the game logic in our Node.js HTTP server in a lightweight manner, with no changes to the code needing to be made between the console version but for the implementation of the \texttt{TraditionalOthello} class.
+Utilising this design has given us a multitude of advantages. We have kept the design class general enough to use different board sizes and different numbers of players. We have separated the data representation of board and players, and appropriate accessor methods into respective classes. Through \texttt{Composition} we provided a single interface for executing the game.
 
-The design pattern we use most often is the \texttt{Iterator} pattern. The reason for this is it allows us to abstract away from the internal representation of the memory at each stage of the object hierarchy. Doing this lowers the rigidity of the code, as no information about the representation matters for the game.
+We have utilised the \texttt{Iterator} pattern several times. The reason for this is it allows us to abstract away from the internal representation of the data at each stage of the object hierarchy. Doing this lowers the rigidity of the code, as no information about the representation matters for the caller's implementation.
 
-A further feature that we implemented was a \texttt{HistoryOthello} class, allowing players to replay the game and undo moves. This was implemented via the \texttt{Decorator} pattern, used to keep the game design free of the extra backage that implemented this feature internally would cause.
+We were also planning on creating a HistoryOthello class, allowing players to replay their game and undo moves. This could be implemented via the \texttt{Decorator} pattern, without any impact on the current game implementation.
 
-The console version can be viewed and played via the file \texttt{game/ConsoleOthello.coffee}. It is dependant on the \texttt{commander} module.
+The console version can be viewed and played via the \texttt{ConsoleOthello} class.
 
 \begin{verbatim}
 Michal(w),  where would you like to place next stone?
@@ -101,41 +101,39 @@ Game has ended, final scores:
 Michal: 57
 Tom: 7
 \end{verbatim}
-\section{HTTP Server}
+\section{Othello on the Web}
 
-The next stage in the production of our gaming server was the design of networking logic, and implementation of a client side U.I. to play the game on, and challenge other players on the same web page.
+The next stage in the production of our gaming server was the design of networking logic, and implementation of a client side UI to play the game on, and challenge other players on the same web page. We have followed the \texttt{Model-View-Controller} architecture, whereas our core game logic became the Model, servers serve as Controllers populating the client Views in browser. Thanks to WebSockets we design a simple publish-subscribe scheme, where the clients push messages with player's moves and servers push the updated game state. We have purposely followed the \texttt{Tell Don't Ask} methodology, where confirmations are done through callbacks on sent messages instead of more tradional HTTP requests.
 
-To minimize the workload of producing a large game server, we have utilised the following web technologies:
+\includegraphics[width=\textwidth]{SoftwareEngineering.png}
+
+For implementing a complex web application we have utilised many current web technologies:
 \begin{itemize}
-\item Coffeescript is used to write code in, which minimizes the length of the code to write significantly, and providing (an illusion of) traditional object oriented programming environment.
-\item Node.js allows the entire website to be written in Coffeescript (javascript natively), which means that our client and server can share code more simply.
+\item We used Coffeescript solemnly to implement both back and front end of our application, as well as the game logic. We were able to leverage the advantages of using Javascript in the browser and in Node.js, and in addition produce more readable code and stick with familiar classical OOP.
+\item Node.js allows the entire application to be written in Coffeescript (javascript natively) and provides the perfect environment for modern frameworks.
 \item Express.js allows the web server to be split into more manageable sections: views, routes, static scripting files and external node modules.
-\item JQuery and JQuery UI Libraries have reduced the workload on producing the lobby, reducing complex HTML operations into  a single javascript call
-\item socket.io is an interface to web sockets that provides very simple listeners and emitters, written in the same way for both Node.js server and client. This is incredibly powerful, and reduces the networking code down immensely such that it is a very simple transformation between design and implementation.
+\item JQuery and JQuery UI Libraries have reduced the workload on producing the lobby, reducing complex HTML operations into a single javascript call.
+\item socket.io is an interface to web sockets that provides very simple listeners and emitters, written in the same way for both Node.js server and browser client. This is incredibly powerful, and reduces the networking code down immensely such that it is a very simple transformation between design and implementation.
 \item Paper.js gives us a more powerful interface to the web canvas framework, allowing our Othello GUI code to be written more succintly, with clickable objects being supported natively via the listener callback pattern.
 \end{itemize}
 
 Producing the Web server was done in a slightly differerent way to the way we produced the console game. We first built a proof of concept of the socket.io framework - with a simple box that would send to the server and write a message on the console. 
 
-After we had our proof of concept produced, we designed the network schematics for how we wanted the communication between clients and the server to roughly follow. The Lobby Connection flowchart is available below.
+After we had our proof of concept produced, we designed the network schematics for how we wanted the communication between clients and the server to roughly follow.
 
-\includegraphics[width=\textwidth]{LobbyConnectionFlowchart.png}
-
-Then, from this proof of concept we built upwards, iteratively improving until we had a full lobby backend. Alongside this work, we each played around with the various canvas libaries until we settled upon paper.js (the other contender was processing.js, but it required the entire screen to be redrawn for a small change). After the lobby was done, we used this same iterative improvement process on the GUI until we had our finished product.
+Then, from this proof of concept we built upwards, iteratively improving until we had a full lobby backend. Alongside this work, we each played around with the various canvas libaries until we settled upon paper.js (we also considered processing.js). After the lobby was done, we used this same iterative improvement process on the GUI until we had our finished product.
 
 \section{Conclusion}
 
-For this coursework, we believe we have produced a simple design, which is easily extensible into differing applications.
+For this coursework, we believe we have produced a simple design, which is easily extensible into differing applications. In designing each component, we attempted to adhere to good \texttt{Object Oriented} principles of encapsulation and composition over inheritence.
 
 We have ensured that what we have produced behaves correctly, via utilising the unit testing framework. 
 
-We have ensured that our design is clear, through commenting our code as we have gone along
+We have ensured that our design is clear, and that mostly self-documenting code is accompanied by comments where appropriate.
 
 We have ensured that our design is scalable, via a split between HTTP servers and the websocket backend. The websocket backend is built in such a way that it could be easily scaled via a MapReduce style framework, simply splitting games and sockets between multiple servers.
 
 We have ensured that we have a flexibility in our design, via multiple levels of abstraction away from internal representations of data. This means that our code is easily maintainable and extensible with minimal effort.
-
-In designing each component, we attempted to adhere to \texttt{Object Oriented} principles, wherby the number of public methods in each class is minimized to the bare requirement of the features that are inherently necessary to the functionality of the object. This leads to a clean, and simple design.
 
 
 \section{Screenshot}

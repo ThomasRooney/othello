@@ -7,7 +7,7 @@
   "engines": { "node":"0.6.15", "npm":"1" },
   "main": "application.coffee",
   "dependencies": {
-    "coffee-script": "*"
+    "coffee-script": "1.4.0"
   },
   "repositories": [
     { "type":"git", "url":"git://github.com/xixixao/othello.git" }

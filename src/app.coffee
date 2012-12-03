@@ -7,7 +7,6 @@ store      = require('./routes/store')
 user       = require('./routes/user')
 http       = require('http')
 path       = require('path')
-util       = require('./apputil')
 
 app = express()
 

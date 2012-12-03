@@ -1,4 +1,4 @@
 othello
 =======
 
-Multiplayer Othello game in Ruby and CoffeeScript
+Multiplayer Othello game in CoffeeScript

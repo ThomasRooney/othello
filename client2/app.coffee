@@ -14,7 +14,7 @@ util       = require('./apputil')
 app = express()
 
 app.configure ->
-  app.set('port', process.env.PORT || 3000)
+  app.set('port', 3000)
   app.set('views', __dirname + '/views')
   app.set('view engine', 'jade')
   app.use(express.favicon())

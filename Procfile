@@ -1,2 +1,2 @@
-web: coffee client2/app.coffee
+web: coffee src/app.coffee
 

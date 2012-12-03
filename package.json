@@ -1,0 +1,18 @@
+{
+  "name": "Othello",
+  "description": "Software Engineering Coursework HTML5 Reversi Implementation",
+  "author": "Thomas Rooney and Michal Srb",
+  "version": "0.1",
+  "homepage": "https://github.com/xixixao/othello",
+  "engines": { "node":"0.4 || 0.5", "npm":"1" },
+  "main": "application.coffee",
+  "dependencies": {
+    "coffee-script": "*"
+  },
+  "repositories": [
+    { "type":"git", "url":"git://github.com/xixixao/othello.git" }
+  ],
+  "licenses": [
+    { "type":"GNU", "url":"http://www.gnu.org/licenses/gpl.html"}
+  ]
+}

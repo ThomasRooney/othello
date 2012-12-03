@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  3 DEC 2012 05:43
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  3 DEC 2012 06:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -360,34 +360,27 @@ File: LobbyConnectionFlowchart.png Graphic file (type png)
 <use LobbyConnectionFlowchart.png>
 Package pdftex.def Info: LobbyConnectionFlowchart.png used on input line 124.
 (pdftex.def)             Requested size: 494.7931pt x 315.89449pt.
-
-<GameConnectionFlowchart.png, id=57, 1716.4125pt x 1427.3325pt>
-File: GameConnectionFlowchart.png Graphic file (type png)
-
-<use GameConnectionFlowchart.png>
-Package pdftex.def Info: GameConnectionFlowchart.png used on input line 125.
-(pdftex.def)             Requested size: 494.7931pt x 411.45476pt.
- [4] [5 <./LobbyConnectionFlowchart.png>]
-<Screenshot.png, id=67, 1026.83624pt x 578.16pt>
+ [4]
+<Screenshot.png, id=61, 1026.83624pt x 578.16pt>
 File: Screenshot.png Graphic file (type png)
  <use Screenshot.png>
-Package pdftex.def Info: Screenshot.png used on input line 143.
+Package pdftex.def Info: Screenshot.png used on input line 142.
 (pdftex.def)             Requested size: 494.7931pt x 278.59875pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 144.
- [6 <./GameConnectionFlowchart.png>] [7 <./Screenshot.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 144.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 143.
+ [5 <./LobbyConnectionFlowchart.png>] [6 <./Screenshot.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 143.
  (./documention.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 144.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 144.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 143.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 143.
 Package rerunfilecheck Info: File `documention.out' has not changed.
 (rerunfilecheck)             Checksum: E6813D4C82FB90DB015A295C665F50EC;286.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 144.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 143.
  ) 
 Here is how much of TeX's memory you used:
- 5803 strings out of 493488
- 86197 string characters out of 3144748
+ 5797 strings out of 493488
+ 86037 string characters out of 3144748
  172699 words of memory out of 3000000
- 9047 multiletter control sequences out of 15000+200000
+ 9043 multiletter control sequences out of 15000+200000
  8005 words of font info for 29 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  30i,6n,35p,502b,435s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -397,10 +390,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2012/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2012/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on documention.pdf (7 pages, 646025 bytes).
+Output written on documention.pdf (6 pages, 502801 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
- 74 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 97 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
+ 17 named destinations out of 1000 (max. 500000)
+ 69 words of extra memory for PDF output out of 10000 (max. 10000000)
 

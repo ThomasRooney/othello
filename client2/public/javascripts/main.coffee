@@ -1,6 +1,7 @@
 $ ->
   myId = null
   hash = null
+  models = {}
 
   #
   # Server - client communication
@@ -17,23 +18,33 @@ $ ->
       $("#playerList").sortable 'refresh'
 
   $('#send').click ->
-    socket.emit 'playerJoined', $('#input').val(), (success, data) ->
+    socket.emit 'playerJoined', $('#input').val(), (success, uid) ->
       if success
-        console.log "Logged in", data
-        myId = data.uid
-        hash = data.hash
+        console.log "Logged in", uid
+        myId = uid
         $('#form').hide()
         $('#players').show()
         $('#content').show()
 
-  socket.on 'challenged', (uid, byWho, accepted) ->
-    console.log 'challenged', byWho
+  socket.on 'challenged', (uid, opponentName, accepted) ->
+    console.log 'challenged', opponentName
     accepted yes
-    launch openTab(uid, byWho), uid
+    launch openTab(uid, opponentName), uid
 
-  socket.on 'update', (opponent, model) ->
-    canvas = tabs.find("div[data-uid='#{opponent}'] .gameBoard")
-    console.log "canvas", canvas
+  socket.on 'update', (myNumber, opponent, model) ->
+    models[opponent] = model
+    tab = tabs.find "div[data-uid='#{opponent}']"
+    names = []
+    names[myNumber] = "You"
+    names[1 - myNumber] = tab.data 'opponent'
+    console.log myNumber, model.currentPlayer
+    model.myTurn = myNumber is model.currentPlayer
+    for i in [0..1]
+      tab.find("h3[data-player=#{i}]").text("#{names[i]} #{model.score[i]}")
+      .css 'text-decoration', if model.currentPlayer is i then 'underline' else 'none'
+    if model.finished
+      tab.prepend "<h3 style='float: right'>Game over!</h3>"
+    canvas = tab.find(".gameBoard")
     updateBoard canvas, model
 
   #
@@ -49,7 +60,7 @@ $ ->
 
   challenge = (tab, player) ->
     tab.append "<h3>Challenging...</h3>"
-    socket.emit 'challenging', myId, hash, player, (accepted) ->
+    socket.emit 'challenging', player, (accepted) ->
       if accepted
         launch tab, player
 
@@ -72,8 +83,8 @@ $ ->
 
   launch = (tab, uid) ->
     tab.empty()
-    tab.append "<h3 class='whitePlayer'>Me</h3>"
-    tab.append "<h3 class='blackPlayer'>#{tab.data 'opponent'}</h3>"
+    tab.append "<h3 class='whitePlayer' data-player=0></h3>"
+    tab.append "<h3 class='blackPlayer'data-player=1></h3>"
     tab.append "<canvas class='gameBoard' width='600' height='400' />"
     console.log "drawcanvas", tab.find(".gameBoard")
     drawBoard tab.find(".gameBoard"), uid
@@ -167,11 +178,10 @@ $ ->
       strokeColor:  '#aaa'
       strokeWidth:  1
 
-  currentTurn = null
-
-  isValidMove = (coor) ->
+  isValidMove = (model, coor) ->
     return false unless coor?
-    for pos in currentTurn.validMoves
+    return false unless model.myTurn
+    for pos in model.validMoves
       if coor.equals pos
         return true
     false
@@ -179,18 +189,23 @@ $ ->
   attachTools = (uid) ->
     tool = new Tool
     highlighted = null
+
+    # Hightlight valid moves when hovered
     tool.onMouseMove = (event) ->
+      model = models[uid]
       highlighted?.setStyle downStyle
       result = project.hitTest event.point, fill: true
-      if isValidMove result?.item.coordinate
+      if isValidMove model,result?.item.coordinate
         highlighted = result.item
         highlighted.setStyle overStyle
+
+    # Sent move to the server when clicked
     tool.onMouseUp = (event) ->
+      model = models[uid]
       result = project.hitTest event.point, fill: true
-      if isValidMove result?.item.coordinate
+      if isValidMove model, result?.item.coordinate
         coor = result.item.coordinate
-        console.log "makeMove #{uid}", myId, x: coor.x, y: coor.y
-        socket.emit "makeMove #{uid}", myId, x: coor.x, y: coor.y
+        socket.emit "makeMove #{uid}", x: coor.x, y: coor.y
 
   drawBoard = (canvas, uid) ->
     board = prepareBoard canvas
@@ -201,7 +216,6 @@ $ ->
   PlayerStones = [WhiteStone, BlackStone]
 
   updateBoard = (canvas, model) ->
-    currentTurn = model
     console.log model
     board = prepareBoard canvas
     for {x, y, player} in model.board
@@ -209,6 +223,7 @@ $ ->
       board.newStone PlayerStones[player], x, y
     board.rotateTo 50, 70
     view.draw()
+
 
     #view.setOnFrame ->
 

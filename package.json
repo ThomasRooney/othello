@@ -4,7 +4,7 @@
   "author": "Thomas Rooney and Michal Srb",
   "version": "0.1",
   "homepage": "https://github.com/xixixao/othello",
-  "engines": { "node":"0.4 || 0.5", "npm":"1" },
+  "engines": { "node":"0.6.15", "npm":"1" },
   "main": "application.coffee",
   "dependencies": {
     "coffee-script": "*"

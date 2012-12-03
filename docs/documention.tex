@@ -32,9 +32,6 @@ The task that we have been given is to design and implement a computer-based ver
 
 To implement this, we have decided to leverage web technologies to build a webpage, that when loaded, provides the player with a UI for a multiplayer lobby, through which the players can challenge one another and play a game of Reversi.
 
-Our finished product is available at: \href{http://www.roonster.net:3000}{http://www.roonster.net:3000} \\
-With github respoitory available at: \href{http://github.com/xixixao/othello}{http://github.com/xixixao/othello}
-
 To focus our design efforts, we decided to utilise the Test Driven Development style through the following workflow:
 \begin{enumerate}
 \item Writing Calling Code
@@ -140,4 +137,8 @@ We have ensured that our design is clear, through commenting our code as we have
 We have ensured that our design is scalable, via a split between HTTP servers and the websocket backend. The websocket backend is built in such a way that it could be easily scaled via a MapReduce style framework, simply splitting games and sockets between multiple servers.
 
 We have ensured that we have a flexibility in our design, via multiple levels of abstraction away from internal representations of data. This means that our code is easily maintainable and extensible with minimal effort.
+
+\section{Screenshot}
+
+\includegraphics[width=\textwidth]{Screenshot.png}
 \end{document}

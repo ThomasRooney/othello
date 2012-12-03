@@ -100,7 +100,11 @@ Y:  5
 Game has ended, final scores:
 Michal: 57
 Tom: 7
+
 \end{verbatim}
+
+We have used composition to provide a Serializer class which takes any Othello instance and provides the game state representation to be sent to clients or save in memory. We have also used a pseudo Factory class to produce different Othello instantiations.
+
 \section{Othello on the Web}
 
 The next stage in the production of our gaming server was the design of networking logic, and implementation of a client side UI to play the game on, and challenge other players on the same web page. We have followed the \texttt{Model-View-Controller} architecture, whereas our core game logic became the Model, servers serve as Controllers populating the client Views in browser. Thanks to WebSockets we design a simple publish-subscribe scheme, where the clients push messages with player's moves and servers push the updated game state. We have purposely followed the \texttt{Tell Don't Ask} methodology, where confirmations are done through callbacks on sent messages instead of more tradional HTTP requests.
@@ -119,7 +123,7 @@ For implementing a complex web application we have utilised many current web tec
 
 Producing the Web server was done in a slightly differerent way to the way we produced the console game. We first built a proof of concept of the socket.io framework - with a simple box that would send to the server and write a message on the console. 
 
-After we had our proof of concept produced, we designed the network schematics for how we wanted the communication between clients and the server to roughly follow. The Lobby Connection flowchart is available below.
+After we had our proof of concept produced, we designed the network schematics for how we wanted the communication between clients and the server to roughly follow. The Connection flowchart is available below.
 
 \includegraphics[width=\textwidth]{ConnectionFlowchart.png}
 

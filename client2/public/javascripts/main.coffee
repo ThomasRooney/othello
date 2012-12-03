@@ -2,6 +2,7 @@ $ ->
   myId = null
   hash = null
   models = {}
+  paperScopes = {}
 
   #
   # Server - client communication
@@ -44,8 +45,7 @@ $ ->
       .css 'text-decoration', if model.currentPlayer is i then 'underline' else 'none'
     if model.finished
       tab.prepend "<h3 style='float: right'>Game over!</h3>"
-    canvas = tab.find(".gameBoard")
-    updateBoard canvas, model
+    updateBoard opponent, model
 
   #
   # UI reactions
@@ -161,11 +161,9 @@ $ ->
       super new Size(45, 45), 20
       @setStyle '#07f', '#06f'
 
-  prepareBoard = (canvas) ->
-    paper.setup canvas.get(0)
-    console.log new Point(canvas.width(), canvas.height()).divide(2)
-    board = new Board new Point(canvas.width(), canvas.height()).divide(2), 
-                      new Size(50, 50), new Size(8, 8)
+  prepareBoard = (uid) ->
+    paperScopes[uid].install(window)
+    board = new Board new Point(300, 200), new Size(50, 50), new Size(8, 8)
     board.setStyle downStyle
     return board
 
@@ -193,6 +191,7 @@ $ ->
     # Hightlight valid moves when hovered
     tool.onMouseMove = (event) ->
       model = models[uid]
+      paperScopes[uid].install(window)
       highlighted?.setStyle downStyle
       result = project.hitTest event.point, fill: true
       if isValidMove model,result?.item.coordinate
@@ -202,22 +201,25 @@ $ ->
     # Sent move to the server when clicked
     tool.onMouseUp = (event) ->
       model = models[uid]
+      paperScopes[uid].install(window)
       result = project.hitTest event.point, fill: true
       if isValidMove model, result?.item.coordinate
         coor = result.item.coordinate
         socket.emit "makeMove #{uid}", x: coor.x, y: coor.y
 
   drawBoard = (canvas, uid) ->
-    board = prepareBoard canvas
+    scope = paperScopes[uid] = new paper.PaperScope();
+    scope.setup canvas.get(0)
+    board = prepareBoard uid
     attachTools uid
     board.rotateTo 50, 70
     view.draw()
 
   PlayerStones = [WhiteStone, BlackStone]
 
-  updateBoard = (canvas, model) ->
+  updateBoard = (uid, model) ->
     console.log model
-    board = prepareBoard canvas
+    board = prepareBoard uid
     for {x, y, player} in model.board
       console.log player, PlayerStones[player]
       board.newStone PlayerStones[player], x, y
@@ -235,4 +237,3 @@ $ ->
   tabCounter = 1
   tabs = $('#tabs')
   tabs.tabs()
-  paper.install(window)

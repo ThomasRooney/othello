@@ -51,12 +51,10 @@ module.exports = (server) ->
       socket = sockets[player]
       do (i) ->
         socket.on "makeMove #{opponent}", ({x, y}) ->
-          console.log "#{i} made a move"
+          console.log player, opponent, game
           if game.isNextPlayer i
             game.makeMove x, y, ->
-              console.log game.isFinished(), game.canPlay()
               if not game.isFinished() and not game.canPlay()
-                console.log "Skipping player #{i}"
                 game.skipMove()
               update gamePlayers, gameModel
             , ->

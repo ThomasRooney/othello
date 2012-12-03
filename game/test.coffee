@@ -1,4 +1,4 @@
-Othello = require './othello'
+Othello = require './Othello'
 
 log = console.log
 

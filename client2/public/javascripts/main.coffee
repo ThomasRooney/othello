@@ -6,7 +6,7 @@ $ ->
   # Server - client communication
   #
 
-  socket = io.connect 'http://localhost:3000'
+  socket = io.connect 'http://obscure-caverns-8909.herokuapp.com'
 
   socket.on 'onlinePlayers', (players) ->
     $("#playerList").empty()

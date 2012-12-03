@@ -13,7 +13,7 @@ class LetterBoard
       callback @toLabel(x), y, player
 
   get: (x, y) ->
-    @board.get fromLabel
+    @board.get fromLabel(x), y
 
   fromLabel: (x) ->
     x.charCodeAt(0) - ChessBoard.aCode

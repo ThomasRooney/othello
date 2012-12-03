@@ -1,5 +1,21 @@
-Board = require './Board'
-
+#
+# Main game logic class with following responsibilities:
+#
+#  keep track of which player's turn it is'
+#    + nextPlayer
+#  keep track of state of the board
+#    + getBoard
+#  decide on validity of moves
+#    + getValidMoves
+#    + isValidMove
+#  keep track of state of the game
+#    + getScore
+#    + isFinished
+#  change state of the game
+#    + constructor
+#    + skipMove
+#    + makeMove
+#
 module.exports = class Othello
   constructor: (@board, @players) ->
 

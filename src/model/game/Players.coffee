@@ -1,3 +1,7 @@
+#
+# Represents a set of players, identified by integers from 0. Provides
+# an iterator and keeps track of a one current player.
+#
 module.exports = class Players
   constructor: (@count, initialPlayer) ->
     @currentPlayer = initialPlayer

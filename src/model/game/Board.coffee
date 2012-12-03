@@ -1,3 +1,7 @@
+#
+# Wrapper around the internal representation of a board.
+# Provides iterators for accessing values and boundary checking.
+#
 module.exports = class Board
 
   constructor: (@width, @height)->

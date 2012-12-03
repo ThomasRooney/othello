@@ -8,7 +8,7 @@ module.exports = class OthelloSerializer
     validMoves:
       @_serializeValidMoves()
     score:
-      @_serializeScore()
+      @othello.getScore()
     finished:
       @othello.isFinished()
 
@@ -18,6 +18,3 @@ module.exports = class OthelloSerializer
 
   _serializeValidMoves: ->
     x: x, y: y for [x, y] in @othello.getValidMoves()
-
-  _serializeScore: ->
-    i: score for score, i in @othello.getScore()

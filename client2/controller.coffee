@@ -29,6 +29,11 @@ module.exports = (server) ->
         socket.broadcast.emit 'onlinePlayers', players
         sockets[uid] = socket
 
+    # Player disconnected
+    socket.on 'disconnect', ->
+      delete players[uid]
+      socket.broadcast.emit 'onlinePlayers', players
+
     # Player challenged another
     socket.on 'challenging', (against, successIs) ->
       if !sockets[against]?
@@ -42,7 +47,7 @@ module.exports = (server) ->
             successIs false, "Challenge rejected"
 
   launchGame = (gamePlayers) ->
-    game = OthelloFactory.smallTraditional()
+    game = OthelloFactory.traditional()
     gameModel = new OthelloSerializer game
 
     update gamePlayers, gameModel

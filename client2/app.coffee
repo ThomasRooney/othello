@@ -75,11 +75,31 @@ TraditionalOthello = require '../game/TraditionalOthello'
 OthelloSerializer  = require '../game/OthelloSerializer'
 
 launchGame = (white, black) ->
-  whiteSocket = sockets[white]
-  blackSocket = sockets[black]
 
   game = new TraditionalOthello
   gameModel = new OthelloSerializer game
 
+  players[white] = 0
+  players[black] = 1
+
+  update white, black, gameModel
+
+  for [player, opponent] in [[white, black], [black, white]]
+    socket = sockets[player]
+    socket.on "makeMove #{opponent}", (from, {x, y}) ->
+      console.log "#{from} Move made"
+      if game.isNextPlayer players[from]
+        game.makeMove x, y, ->
+          update white, black, gameModel
+        , ->
+          console.log "This shouldnt happen"
+
+update = (white, black, gameModel) ->
+  whiteSocket = sockets[white]
+  blackSocket = sockets[black]
+
   for [socket, opponent] in [[whiteSocket, black], [blackSocket, white]]
     socket.emit 'update', opponent, gameModel.serialize()
+  return
+
+

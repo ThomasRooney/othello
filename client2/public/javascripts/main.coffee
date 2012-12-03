@@ -90,6 +90,7 @@ $ ->
         for x in [0...dimensions.width]
           at = center.add(new Point(x, y).multiply(@tileSize).subtract(@offset))
           path = new Path.Rectangle at, @tileSize
+          path.coordinate = new Point x, y
           @group.addChild path
       @stones = []
 
@@ -154,17 +155,42 @@ $ ->
     console.log new Point(canvas.width(), canvas.height()).divide(2)
     board = new Board new Point(canvas.width(), canvas.height()).divide(2), 
                       new Size(50, 50), new Size(8, 8)
-    board.setStyle
+    board.setStyle downStyle
+    return board
+
+  downStyle =
       fillColor:  '#ddd'
       strokeColor:  '#aaa'
       strokeWidth:  1
+  overStyle = 
+      fillColor:  '#eee'
+      strokeColor:  '#aaa'
+      strokeWidth:  1
 
-    return board
+  currentTurn = null
+
+  isValidMove = (coor) ->
+    return false unless coor?
+    for pos in currentTurn.validMoves
+      if coor.equals pos
+        return true
+    false
 
   attachTools = (uid) ->
     tool = new Tool
-    tool.onMouseOver = (event) ->
-      console.log uid
+    highlighted = null
+    tool.onMouseMove = (event) ->
+      highlighted?.setStyle downStyle
+      result = project.hitTest event.point, fill: true
+      if isValidMove result?.item.coordinate
+        highlighted = result.item
+        highlighted.setStyle overStyle
+    tool.onMouseUp = (event) ->
+      result = project.hitTest event.point, fill: true
+      if isValidMove result?.item.coordinate
+        coor = result.item.coordinate
+        console.log "makeMove #{uid}", myId, x: coor.x, y: coor.y
+        socket.emit "makeMove #{uid}", myId, x: coor.x, y: coor.y
 
   drawBoard = (canvas, uid) ->
     board = prepareBoard canvas
@@ -175,6 +201,8 @@ $ ->
   PlayerStones = [WhiteStone, BlackStone]
 
   updateBoard = (canvas, model) ->
+    currentTurn = model
+    console.log model
     board = prepareBoard canvas
     for {x, y, player} in model.board
       console.log player, PlayerStones[player]

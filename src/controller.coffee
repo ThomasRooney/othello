@@ -1,6 +1,6 @@
 # Model classes
-OthelloFactory = require '../game/OthelloFactory'
-OthelloSerializer  = require '../game/OthelloSerializer'
+OthelloFactory = require './model/game/OthelloFactory'
+OthelloSerializer  = require './model/game/OthelloSerializer'
 
 module.exports = (server) ->
 

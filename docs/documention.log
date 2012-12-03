@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  3 DEC 2012 06:31
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  3 DEC 2012 06:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -352,13 +352,13 @@ File: OthelloGameClassDiagram.png Graphic file (type png)
 Package pdftex.def Info: OthelloGameClassDiagram.png used on input line 75.
 (pdftex.def)             Requested size: 489.10307pt x 318.56976pt.
  [3 <./OthelloGameClassDiagram.png>] [4]
-<LobbyConnectionFlowchart.png, id=60, 1565.85pt x 999.735pt>
-File: LobbyConnectionFlowchart.png Graphic file (type png)
+<ConnectionFlowchart.png, id=60, 1716.4125pt x 1186.4325pt>
+File: ConnectionFlowchart.png Graphic file (type png)
 
-<use LobbyConnectionFlowchart.png>
-Package pdftex.def Info: LobbyConnectionFlowchart.png used on input line 124.
-(pdftex.def)             Requested size: 489.10307pt x 312.26387pt.
- [5 <./LobbyConnectionFlowchart.png>]
+<use ConnectionFlowchart.png>
+Package pdftex.def Info: ConnectionFlowchart.png used on input line 124.
+(pdftex.def)             Requested size: 489.10307pt x 338.06436pt.
+ [5 <./ConnectionFlowchart.png>]
 <Screenshot.png, id=66, 1026.83624pt x 578.16pt>
 File: Screenshot.png Graphic file (type png)
  <use Screenshot.png>
@@ -376,7 +376,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 143.
  ) 
 Here is how much of TeX's memory you used:
  5797 strings out of 493488
- 86037 string characters out of 3144748
+ 86012 string characters out of 3144748
  172694 words of memory out of 3000000
  9043 multiletter control sequences out of 15000+200000
  8005 words of font info for 29 fonts, out of 3000000 for 9000
@@ -388,7 +388,7 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2012/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2012/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on documention.pdf (6 pages, 472164 bytes).
+Output written on documention.pdf (6 pages, 484778 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  75 compressed objects within 1 object stream

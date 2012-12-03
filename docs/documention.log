@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  3 DEC 2012 06:04
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.11.2)  3 DEC 2012 06:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -329,12 +329,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 28.
 
-<SoftwareEngineering.png, id=28, 1903.11pt x 825.0825pt>
+<SoftwareEngineering.png, id=28, 1626.075pt x 794.97pt>
 File: SoftwareEngineering.png Graphic file (type png)
 
 <use SoftwareEngineering.png>
 Package pdftex.def Info: SoftwareEngineering.png used on input line 45.
-(pdftex.def)             Requested size: 489.10307pt x 212.0488pt.
+(pdftex.def)             Requested size: 489.10307pt x 239.11148pt.
  [1
 
 {c:/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
@@ -345,12 +345,12 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
  [2 <./SoftwareEngineering.png>]
-<OthelloGameClassDiagram.png, id=50, 1529.715pt x 1252.68pt>
+<OthelloGameClassDiagram.png, id=50, 1571.8725pt x 1023.825pt>
 File: OthelloGameClassDiagram.png Graphic file (type png)
 
 <use OthelloGameClassDiagram.png>
 Package pdftex.def Info: OthelloGameClassDiagram.png used on input line 75.
-(pdftex.def)             Requested size: 489.10307pt x 400.52173pt.
+(pdftex.def)             Requested size: 489.10307pt x 318.56976pt.
  [3 <./OthelloGameClassDiagram.png>] [4]
 <LobbyConnectionFlowchart.png, id=60, 1565.85pt x 999.735pt>
 File: LobbyConnectionFlowchart.png Graphic file (type png)
@@ -381,14 +381,14 @@ Here is how much of TeX's memory you used:
  9043 multiletter control sequences out of 15000+200000
  8005 words of font info for 29 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 30i,6n,35p,502b,377s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,6n,35p,502b,375s stack positions out of 5000i,500n,10000p,200000b,50000s
 <c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/tex
 live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2012/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2012/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2012/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on documention.pdf (6 pages, 502999 bytes).
+Output written on documention.pdf (6 pages, 472164 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  75 compressed objects within 1 object stream

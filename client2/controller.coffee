@@ -42,7 +42,7 @@ module.exports = (server) ->
             successIs false, "Challenge rejected"
 
   launchGame = (gamePlayers) ->
-    game = OthelloFactory.smallTraditional()
+    game = OthelloFactory.traditional()
     gameModel = new OthelloSerializer game
 
     update gamePlayers, gameModel

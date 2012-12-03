@@ -18,7 +18,7 @@
 
 \begin{document}
 
-\title{Software Engineering Coursework \\ Design and Implementation of Multiplayer Othello}
+\title{Software Engineering Design - Coursework \\ Design and Implementation of Multiplayer Othello}
 
 \author{Michal Srb and Thomas Rooney}
 
@@ -30,22 +30,20 @@
 
 The task that we have been given is to design and implement a computer-based version of Othello, that is playable between at least two human players.
 
-To implement this, we have decided to leverage web technologies to build a webpage, that when loaded, provides the player with a UI for a multiplayer lobby, through which the players can challenge one another and play a game of Reversi.
+To implement this, we have decided to leverage web technologies to build a web application, where players can challenge one another and play a game of Othello. The application includes a virtual lobby and stack of one player's current games.
 
-To focus our design efforts, we decided to utilise the Test Driven Development style through the following workflow:
+We have followed three main principles during the design and implementation of the project. Firstly, we focused on minimizing API to bare minimum for every interface. Secondly, we employed top-down programming - we always wrote caller's code first before writing a concrete implementation. And lastly, we followed Test-Driven Development technique when developing core logics. Hence, we followed the presented pattern when designing and implementing the main game logic of Othello:
 \begin{enumerate}
-\item Writing Calling Code
-\item Write a shell implementation of the feature, just enough such that it compiles
-\item Use Test Driven Development:- writing tests for the feature using the methods defined above; defining the methods such that tests pass \ldots
-\item End up with finished, and tested feature
+\item Write example calling code - simple Command-Line interface UI
+\item Write a mock implementation to test correctness of API design
+\item Use Test Driven Development- writing tests for each feature (desing previously)
+\item End up with lightweight and functional implementation
 \end{enumerate}
-
-In designing each component, we also attempted to adhere to \texttt{Object Oriented} principles, wherby the number of public methods in each class is minimized to the bare requirement of the features that are inherently necessary to the functionality of the object. This leads to a clean, and simple design.
 
 \includegraphics[width=\textwidth]{SoftwareEngineering.png}
 
 \section{Testing}
-In accordance with Test Driven Development principles, one of the first stages around building the project was to produce a comprehensive test framework, which could be used throughout the project to ensure that the behaviour of the system, and its components, are correct. To do this, we have utilised the Jasmine Javascript testing framework, with the jasmine-node module such that we can quickly write tests and maintain the core behaviour when we add extra features to the design.
+In accordance with Test Driven Development principles, one of the first stages around building the project was to produce a comprehensive test framework, which could be used throughout the project to ensure that the behaviour of the system, and its components, are correct. To do this, we have utilised the Jasmine Javascript testing framework, so that we could quickly write tests and maintain behaviour whenever we changed bits of implementation. We have created a spec for each of the core classes and used several tests for each method. We have also used Jasmine's feature of nested \texttt{beforeEach} setup calls.
 
 \begin{verbatim}
 C:\Code\othello>jasmine-node --coffee --matchall test
@@ -55,7 +53,7 @@ Finished in 0.047 seconds
 28 tests, 42 assertions, 0 failures
 \end{verbatim}
 
-\section{Designing the Othello Game}
+\section{Designing the Othello Core Game Logic}
 
 The Othello game logic is relatively simple, but we worked in a top-down style to design the classes. We first considered how to build a console interface to the game class, and what sort of IO should be available to play the game. The requirements for this class was:
 \begin{itemize}
@@ -136,6 +134,9 @@ We have ensured that our design is clear, through commenting our code as we have
 We have ensured that our design is scalable, via a split between HTTP servers and the websocket backend. The websocket backend is built in such a way that it could be easily scaled via a MapReduce style framework, simply splitting games and sockets between multiple servers.
 
 We have ensured that we have a flexibility in our design, via multiple levels of abstraction away from internal representations of data. This means that our code is easily maintainable and extensible with minimal effort.
+
+In designing each component, we attempted to adhere to \texttt{Object Oriented} principles, wherby the number of public methods in each class is minimized to the bare requirement of the features that are inherently necessary to the functionality of the object. This leads to a clean, and simple design.
+
 
 \section{Screenshot}
 
